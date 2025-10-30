@@ -88,6 +88,24 @@ export class RpcClient {
       options: options ?? this._options,
     });
   }
+  async sayOke(
+    params: GreetingParams,
+    options?: ArriRequestOptions,
+  ): Promise<GreetingResponse> {
+    return arriRequest<GreetingResponse, GreetingParams>({
+      url: `${this._baseUrl}/say-oke`,
+      method: "post",
+      ofetch: this._fetch,
+      headers: this._headers,
+      onError: this._onError,
+      params: params,
+      responseFromJson: $$GreetingResponse.fromJson,
+      responseFromString: $$GreetingResponse.fromJsonString,
+      serializer: $$GreetingParams.toJsonString,
+      clientVersion: "",
+      options: options ?? this._options,
+    });
+  }
 }
 
 export interface GreetingParams {
